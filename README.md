@@ -1,4 +1,4 @@
-# Frontdesk Engineering Test: Human-in-the-Loop AI Supervisor
+# Frontdesk Engineering Test: Human-in-the-Loop receptionists
 
 This project implements a human-in-the-loop system for AI agents. If the AI doesn't know the answer to a question, it escalates to a human supervisor, follows up with the customer, and updates its knowledge base.
 
