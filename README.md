@@ -22,7 +22,7 @@ The system consists of several key components:
 
 1. Clone this repository:
 ```bash
-git clone [repository-url]
+git clone [https://github.com/KSurendra1/Human-in-the-Loop-AI--receptionists]
 ```
 
 2. Install dependencies:
