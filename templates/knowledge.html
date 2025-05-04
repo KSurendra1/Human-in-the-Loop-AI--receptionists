@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - Frontdesk AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Frontdesk AI Supervisor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/requests">Help Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/knowledge">Knowledge Base</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <h2>Knowledge Base</h2>
+        <p class="text-muted">Showing learned information from supervisor responses</p>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">Learned Answers ({{ entries|length }})</h5>
+            </div>
+            <div class="card-body">
+                {% if entries %}
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search knowledge base...">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="knowledgeTable">
+                        <thead>
+                            <tr>
+                                <th>Query</th>
+                                <th>Answer</th>
+                                <th>Created</th>
+                                <th>Access Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in entries %}
+                            <tr>
+                                <td>{{ entry.query }}</td>
+                                <td>{{ entry.answer }}</td>
+                                <td>{{ entry.created_at }}</td>
+                                <td>{{ entry.times_accessed }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">No knowledge base entries yet. As supervisors resolve help requests, the system will learn and populate this section.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple client-side search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const input = this.value.toLowerCase();
+            const table = document.getElementById('knowledgeTable');
+            const rows = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+                const queryCell = rows[i].getElementsByTagName('td')[0];
+                const answerCell = rows[i].getElementsByTagName('td')[1];
+                
+                if (queryCell && answerCell) {
+                    const queryText = queryCell.textContent || queryCell.innerText;
+                    const answerText = answerCell.textContent || answerCell.innerText;
+                    
+                    if (queryText.toLowerCase().indexOf(input) > -1 || 
+                        answerText.toLowerCase().indexOf(input) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

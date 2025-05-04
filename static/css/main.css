@@ -1,0 +1,68 @@
+/* Main styles for the Frontdesk AI application */
+
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+/* Status badge styling */
+.badge {
+    font-size: 85%;
+    padding: 0.35em 0.65em;
+}
+
+/* Help request status colors */
+.status-pending {
+    background-color: #ffc107;
+}
+
+.status-resolved {
+    background-color: #28a745;
+}
+
+.status-unresolved {
+    background-color: #dc3545;
+}
+
+/* Response form styling */
+textarea.form-control {
+    min-height: 120px;
+}
+
+/* Modal transition effects */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+}
+
+/* Knowledge base entry styling */
+.kb-entry {
+    border-left: 4px solid #007bff;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+}

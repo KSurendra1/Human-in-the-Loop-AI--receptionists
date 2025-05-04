@@ -1,0 +1,11 @@
+flask==2.0.1
+firebase-admin==5.0.4
+python-dotenv==0.19.0
+livekit==0.1.0
+requests==2.26.0
+python-socketio==5.4.0
+flask-socketio==5.1.1
+pytest==6.2.5
+pytest-cov==2.12.1
+black==21.7b0
+flake8==3.9.2
